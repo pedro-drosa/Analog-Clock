@@ -12,6 +12,14 @@ function updateClock() {
   let second = now.getSeconds();
 
   digitalEl.innerHTML = `${fixZero(hour)} : ${fixZero(minute)} : ${fixZero(second)}`;
+
+  let sDeg = ((360/60) * second) - 90;
+  let mDeg = ((360/60) * minute) - 90;
+  let hDeg = ((360/12) * hour) - 90;
+
+  sEl.style.transform = `rotate(${sDeg}deg)`;
+  mEl.style.transform = `rotate(${mDeg}deg)`;
+  hEl.style.transform = `rotate(${hDeg}deg)`;
 }
 
 function fixZero(number) {
@@ -19,3 +27,4 @@ function fixZero(number) {
 }
 
 setInterval(updateClock, 1000);
+updateClock();
